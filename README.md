@@ -22,10 +22,18 @@ gulp
 You can now serve the files using your webserver of choice.
 If you would like to start a simple ad-hoc webserver to test this out, you can use the following one-liner:
 ```
+cd public/
 python -m SimpleHTTPServer 8888
 ```
 and then hit http://localhost:8888
 
+Or even better, you can use browser-sync and have your site auto-reload when changes are detected.
+```
+npm install -g browser-sync
+cd public/
+browser-sync start --server --files "js/*.js, css/*.css"
+```
+browser-sync will then output the URL's on which you can access the site.
 
 ## Thanks
 Thanks Taylor Otwell for your Laravel Spark styling. I used some of it.
