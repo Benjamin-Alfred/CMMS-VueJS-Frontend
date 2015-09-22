@@ -20,6 +20,12 @@ gulp
 
 ### Step 3: Serve it
 You can now serve the files using your webserver of choice.
+If you would like to start a simple ad-hoc webserver to test this out, you can use the following one-liner:
+```
+python -m SimpleHTTPServer 8888
+```
+and then hit http://localhost:8888
+
 
 ## Thanks
 Thanks Taylor Otwell for your Laravel Spark styling. I used some of it.
