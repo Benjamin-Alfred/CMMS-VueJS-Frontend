@@ -1,8 +1,8 @@
 <template>
 	<div class="panel-heading">
-	    Welcome
+	    Register a new account
 	</div>
 	<div class="panel-body">
-	    Here goes the welcome page
+	    Register form goes here
 	</div>
 </template>

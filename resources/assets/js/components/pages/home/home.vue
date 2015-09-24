@@ -1,9 +1,8 @@
 <template>
 	<div class="panel-heading">
-	    Home
+	    Homepage default
 	</div>
-	<!-- Profile Selection notice panel -->
 	<div class="panel-body">
-	    Default Home page
+	    Select an action to your left. This page serves as a demo for the 'default' route in a Vue subRoute.
 	</div>
 </template>

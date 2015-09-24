@@ -2,8 +2,7 @@
 	<div class="panel-heading">
 	    About us
 	</div>
-	<!-- Profile Selection notice panel -->
 	<div class="panel-body">
-	    Some about us page
+	    This is a sample webpage that authenticates against a Laravel API and gets the obligatory dogs.
 	</div>
 </template>

@@ -1,6 +1,6 @@
 {
   "name": "vue-starter",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A starter for vue.js single page apps",
   "author": "Koen Calliauw",
   "license": "MIT",
@@ -9,12 +9,14 @@
     "url": "git://github.com/layer7be/vue-starter.git"
   },
   "devDependencies": {
+    "bootstrap-sass": "^3.0.0",
+    "envify": "^3.4.0",
     "gulp": "^3.8.8",
     "insert-css": "^0.2.0",
-    "vue": "^0.12.15",
-    "vueify": "^1.1.5",
-    "bootstrap-sass": "^3.0.0",
     "laravel-elixir": "^3.0.0",
-    "vue-router": "^0.6.0"
+    "vue": "^0.12.15",
+    "vue-resource": "^0.1.16",
+    "vue-router": "^0.6.0",
+    "vueify": "^1.1.5"
   }
 }
