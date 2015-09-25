@@ -1,19 +1,19 @@
 # Vue.js Starter Website
 This package serves as a starter for you to build a single page Vue.js website. It uses vue-router and browserify to keep everyting nicely separated, and makes use of Laravel Elixir to avoid a huge Gulpfile (Laravel Elixir has nothing to do with the Laravel Framework, this package has no relation to that whatsoever).
 
-A companion Laravel starter will be available shortly. The purpose will be to have a Laravel API using Dingo and JWT Authentication. This starter website will then be able to use authentication on that API and display some extra pages of content served from that.
+A companion Laravel starter API is available [here](https://github.com/layer7be/vue-starter-laravel-api). The purpose is to have a Laravel API using Dingo and JWT Authentication. The API just serves the purpose of getting it working, so you can then adapt and plug in your own API (or adjust the start one, of course)
 
 ## Usage
 
 ### Step 1: Install the dependencies
-This will install the dependencies of this starter website. It will pull in several packages like Vue, Vueify, vue-router, gulp and Laravel Elixir (this is just suger for gulp, basically).
+This will install the dependencies of this starter website. It will pull in several packages like Vue, Vueify, vue-router, gulp and Laravel Elixir (this is just magic syntactical sugar for gulp, basically).
 
 ```
 npm install
 ```
 
 ### Step 2: Decide on the environment
-In resources/js/config you will find configuration files for the various environments you may have. By default, the "development" environment file will be loaded. If you want to load another configuration, you need to export the environment variable APP_ENV to be what you want to want the configuration to be. To do so easily you can precede the command gulp (or gulp watch) from the next step with APP_ENV=production if you want to build for production.
+In resources/assets/js/config you will find configuration files for the various environments you may have. By default, the "development" environment file will be loaded. If you want to load another configuration, you need to export the environment variable APP_ENV to be what you want to want the configuration to be. To do so easily you can precede the command gulp (or gulp watch) from the next step with APP_ENV=production if you want to build for production.
 
 
 ### Step 3: Run Gulp
