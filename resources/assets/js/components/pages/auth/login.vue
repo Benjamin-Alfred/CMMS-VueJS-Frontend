@@ -5,6 +5,12 @@
 	<div class="panel-body">
 	    <form class="form-horizontal" role="form">
 
+			<div id="alerts" v-if="messages.length > 0">
+				<div v-repeat="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+					{{ message.message }}
+				</div>
+			</div>
+
 			<div class="form-group">
 				<label class="col-md-4 control-label">E-Mail Address</label>
 				<div class="col-md-6">
@@ -40,7 +46,8 @@ module.exports = {
 			user: {
 				email: null,
 				password: null
-			}
+			},
+			messages: []
 		}
 	},
 
@@ -50,6 +57,9 @@ module.exports = {
 			this.$http.post('login', this.user, function (data) {
 				this.$dispatch('userHasFetchedToken', data.token);
 				this.getUserData();
+			}).error(function (data, status, request) {
+				this.messages = [];
+				if (status == 401) this.messages.push({type: 'danger', message: 'Sorry, you provided invalid credentials'})
 			})
 		},
 

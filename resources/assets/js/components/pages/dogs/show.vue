@@ -3,6 +3,11 @@
 	    Edit dog
 	</div>
 	<div class="panel-body">
+		<div id="alerts" v-if="messages.length > 0">
+			<div v-repeat="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+				{{ message.message }}
+			</div>
+		</div>
 	    <form class="form-horizontal" role="form">
 	    <fieldset disabled>
 	    	<div class="form-group">
@@ -41,7 +46,8 @@ module.exports = {
 				id: null,
 				name: null,
 				age: null
-			}
+			},
+			messages: []
 		}
 	},
 
@@ -64,10 +70,13 @@ module.exports = {
 		updateDog: function (e) {
 			e.preventDefault();
 			this.$http.put('dogs/'+this.dog.id, this.dog, function (data) {
-				console.log('successfully updated the dog')
+				this.messages = [];
+				this.messages.push({type: 'success', message: 'Woof woof! Your dog was updated'});
 			}).error( function (data, status, request) {
-				console.log('error updating the dog');
-				console.log(data);
+				this.messages = [];
+				for (var key in data) {
+					this.messages.push({type: 'danger', message: data[key]})	
+				}
 			})
 		}
 

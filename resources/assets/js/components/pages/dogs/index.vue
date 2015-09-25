@@ -5,13 +5,18 @@
 	<div class="panel-body" v-if="$loadingRouteData">
 	    Loading data {{ loadingRouteData }}
 	</div>
+	<div class="panel-body" v-if="messages.length > 0">
+		<div v-repeat="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+			{{ message.message }}
+		</div>
+	</div>
 	<table class="table" v-if=" ! $loadingRouteData">
 	    <thead>
 	    	<tr>
 	    		<th>ID</th>
 	    		<th>Name</th>
 	    		<th>Age</th>
-	    		<th>Actions</th>
+	    		<th width="120px">Actions</th>
 	    	</tr>
 	    </thead>
 	    <tbody>
@@ -31,6 +36,12 @@
 <script>
 module.exports = {
 
+	data: function () {
+		return {
+			messages: []
+		}
+	},
+
 	methods: {
 		// Let's fetch some dogs
 		fetch: function (successHandler) {
@@ -49,7 +60,9 @@ module.exports = {
 		deleteDog: function (index) {
 			this.$http.delete('dogs/'+this.dogs[index].id, function (data) {
 				this.dogs.splice(index,1);
-				console.log('dog successfully deleted');
+				this.messages.push({type: 'success', message: 'Great, dog purged.'})
+			}).error(function (data, status, request) {
+				this.messages.push({type: 'danger', message: 'There was a problem removing the dog'})
 			})
 		}
 
