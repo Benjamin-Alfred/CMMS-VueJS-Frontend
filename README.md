@@ -40,7 +40,7 @@ python -m SimpleHTTPServer 8888
 ```
 and then hit http://localhost:8888
 
-Or even better, you can use browser-sync and have your site auto-reload when changes are detected.
+Or even better, you can use browser-sync and have your site auto-reload when changes are detected, which is ideal when developing.
 ```
 npm install -g browser-sync
 cd public/
@@ -48,5 +48,15 @@ browser-sync start --server --files "js/*.js, css/*.css"
 ```
 browser-sync will then output the URL's on which you can access the site.
 
-## Thanks
+### Step 5: Login
+If you followed the instructions in the companion repo and chose to use db:seed, you can now login using the following credentials:
+```
+username: admin@example.com
+password: admin
+```
+
+## License
+MIT License. See LICENSE file.
+
+## Credits
 Thanks Taylor Otwell for your Laravel Spark styling. I used some of it.
