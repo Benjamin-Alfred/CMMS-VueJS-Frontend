@@ -6,7 +6,7 @@
 	module.exports = {
 
 		created: function () {
-			Vue.http.options.root = this.api.base_url;
+			Vue.http.options.root = config.api.base_url;
 			if (localStorage.getItem('token') !== null) {
 				Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 			}
@@ -48,7 +48,6 @@
 				token: null,
 				http_options: {},
 				authenticated: false,
-				api: { base_url: 'http://localhost:8000/api' },
 			}
 		}, 
 
