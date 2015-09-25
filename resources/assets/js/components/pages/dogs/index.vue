@@ -10,7 +10,12 @@
 			{{ message.message }}
 		</div>
 	</div>
-	<table class="table" v-if=" ! $loadingRouteData">
+
+	<div class="panel-body" v-if="dogs.length == 0">
+		You have no dogs!
+	</div>
+
+	<table class="table" v-if=" ! $loadingRouteData && dogs.length > 0">
 	    <thead>
 	    	<tr>
 	    		<th>ID</th>
@@ -38,6 +43,7 @@ module.exports = {
 
 	data: function () {
 		return {
+			dogs: [],
 			messages: []
 		}
 	},
