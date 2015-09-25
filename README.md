@@ -12,14 +12,26 @@ This will install the dependencies of this starter website. It will pull in seve
 npm install
 ```
 
-### Step 2: Run Gulp
+### Step 2: Decide on the environment
+In resources/js/config you will find configuration files for the various environments you may have. By default, the "development" environment file will be loaded. If you want to load another configuration, you need to export the environment variable APP_ENV to be what you want to want the configuration to be. To do so easily you can precede the command gulp (or gulp watch) from the next step with APP_ENV=production if you want to build for production.
+
+
+### Step 3: Run Gulp
 Gulp will compile the Sass stylesheets and run browserify. All the source files are in the 'resources' folder and will publish the results to the 'public' folder.
 
 ```
 gulp
 ```
 
-### Step 3: Serve it
+As discussed in Step 2, you can opt to build for another environment, for example:
+
+```
+APP_ENV=production gulp
+```
+
+Note, this will work on Linux and MacOSX. If somebody knows how to do this properly from the command line in Windows (or if it's the same) please fork the repo and send a PR for this README.
+
+### Step 4: Serve it
 You can now serve the files using your webserver of choice.
 If you would like to start a simple ad-hoc webserver to test this out, you can use the following one-liner:
 ```

@@ -15,7 +15,7 @@ const router = new VueRouter()
 configRouter(router)
 
 // Configure the application
-var config = require('./config')
+window.config = require('./config')
 Vue.config.debug = true
 
 // Bootstrap the app
