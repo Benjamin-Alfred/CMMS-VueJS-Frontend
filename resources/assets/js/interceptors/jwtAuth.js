@@ -23,8 +23,8 @@
 				headers = request.headers || (request.headers = {});
 
 				if ( token !== null && token !== 'undefined') {
-		        	headers.Authorization = token;
-		        }
+					headers.Authorization = token;
+				}
 
 		        return request;
 			},
