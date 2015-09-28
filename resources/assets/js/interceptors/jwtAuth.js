@@ -22,7 +22,7 @@
 				token = localStorage.getItem('jwt-token');
 				headers = request.headers || (request.headers = {});
 
-		        if ( token !== null && token !== 'undefined') {
+				if ( token !== null && token !== 'undefined') {
 		        	headers.Authorization = token;
 		        }
 
