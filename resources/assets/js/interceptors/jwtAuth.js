@@ -23,7 +23,7 @@
 				headers = request.headers || (request.headers = {});
 
 		        if ( token !== null && token !== 'undefined') {
-		        	headers.Authorization = 'Bearer ' + token;
+		        	headers.Authorization = token;
 		        }
 
 		        return request;
@@ -31,10 +31,12 @@
 			response: function (response) {
 				if (response.status && response.status.code == 401) {
 					localStorage.removeItem('jwt-token');
-					console.log('interceptor removed jwt-token from local storage');
+				}
+				if (response.headers && response.headers.Authorization) {
+					localStorage.setItem('jwt-token', response.headers.Authorization)
 				}
 				if (response.entity && response.entity.token && response.entity.token.length > 10) {
-					localStorage.setItem('jwt-token', response.entity.token);
+					localStorage.setItem('jwt-token', 'Bearer ' + response.entity.token);
 				}
 				return response;
 			}

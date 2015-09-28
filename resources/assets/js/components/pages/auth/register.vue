@@ -76,7 +76,7 @@ module.exports = {
 				},
 				function (response, status) {
 					that.messages = [];
-					if (status == 422) {
+					if (response.status && response.status.code == 422) {
 						that.messages = [];
 						for (var key in response.entity) {
 							that.messages.push({type: 'danger', message: response.entity[key]})	

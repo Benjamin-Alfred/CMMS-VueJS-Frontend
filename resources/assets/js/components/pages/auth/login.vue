@@ -56,13 +56,13 @@ module.exports = {
 			e.preventDefault();
 			var that = this
 			client( { path: 'login', entity: this.user } ).then(
-				function (response, status) {
+				function (response) {
 					that.$dispatch('userHasFetchedToken', response.token)
 					that.getUserData()
 				},
-				function (response, status) {
+				function (response) {
 					that.messages = [];
-					if (status == 401) this.messages.push({type: 'danger', message: 'Sorry, you provided invalid credentials'})
+					if (response.status && response.status.code == 401) that.messages.push({type: 'danger', message: 'Sorry, you provided invalid credentials'})
 				}
 			);
 		},
