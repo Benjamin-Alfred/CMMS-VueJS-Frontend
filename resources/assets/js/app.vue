@@ -5,10 +5,6 @@
 <script>
 	module.exports = {
 
-		created: function () {
-			Vue.http.options.root = config.api.base_url;
-		},
-
 		ready: function () {
 			
 			this.$on('userHasLoggedOut', function () {
@@ -39,7 +35,6 @@
 			return {
 				user: null,
 				token: null,
-				http_options: {},
 				authenticated: false,
 			}
 		}, 
