@@ -7,9 +7,6 @@
 
 		created: function () {
 			Vue.http.options.root = config.api.base_url;
-			if (localStorage.getItem('token') !== null) {
-				Vue.http.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
-			}
 		},
 
 		ready: function () {
@@ -22,24 +19,20 @@
 				this.setLogin(user);
 			})
 
-			this.$on('userHasFetchedToken', function (token) {
-				this.setToken(token)
-			})
-
-			// The app has just been initialized, but if we find Auth data, let's check it for validity (also see created)
-			if( ! this.authenticated && Vue.http.headers.common.hasOwnProperty('Authorization')) {
-				this.$http.get('users/me', function (data) {
-
+			// The app has just been initialized, check if we can get the user data with an already existing token
+			that = this;
+			client( { path: '/users/me' }).then(
+				function (response) {
 					// User has successfully logged in using the token from storage
-					this.setLogin(data.user);
+					that.setLogin(response.entity.user);
 					// broadcast an event telling our children that the data is ready and views can be rendered
-					this.$broadcast('data-loaded');
-				
-				}).error(function () {
+					that.$broadcast('data-loaded');
+				},
+				function (response) {
 					// Login with our token failed, do some cleanup and redirect if we're on an authenticated route
-					this.destroyLogin();
-				})
-			}
+					that.destroyLogin();
+				}
+			);
 		},
 
 		data: function () {
@@ -53,18 +46,11 @@
 
 		methods: {
 
-			setToken: function (token) {
-				// Save token in storage and on the vue-resource headers
-				localStorage.setItem('token', token);
-				Vue.http.headers.common['Authorization'] = 'Bearer ' + token;
-			},
-
 			setLogin: function(user) {
 				// Save login info in our data and set header in case it's not set already
 				this.user = user;
 				this.authenticated = true;
-				this.token = localStorage.getItem('token');
-				Vue.http.headers.common['Authorization'] = 'Bearer ' + this.token;
+				this.token = localStorage.getItem('jwt-token');
 			},
 
 			destroyLogin: function (user) {
@@ -72,7 +58,7 @@
 				this.user = null;
 				this.token = null;
 				this.authenticated = false;
-				localStorage.removeItem('token');
+				localStorage.removeItem('jwt-token');
 				if (this.$route.auth) this.$route.router.go('/auth/login');
 			},
 		},

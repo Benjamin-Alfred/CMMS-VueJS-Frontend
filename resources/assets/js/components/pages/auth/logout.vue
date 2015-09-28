@@ -8,7 +8,7 @@ module.exports = {
 			this.$root.authenticated = false;
 			this.$root.user = null;
 			localStorage.removeItem('user');
-			localStorage.removeItem('token');
+			localStorage.removeItem('jwt-token');
 			transition.redirect('/');
 		}
 	}

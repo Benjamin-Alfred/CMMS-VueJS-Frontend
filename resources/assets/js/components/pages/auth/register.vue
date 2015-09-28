@@ -3,7 +3,7 @@
 	    Register for an account
 	</div>
 	<div class="panel-body">
-	    <form class="form-horizontal" role="form">
+	    <form class="form-horizontal" role="form" v-on="submit: registerUser">
 
 			<div id="alerts" v-if="messages.length > 0">
 				<div v-repeat="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
@@ -41,7 +41,7 @@
 
 			<div class="form-group">
 				<div class="col-md-6 col-md-offset-4">
-					<button type="submit" class="btn btn-primary" v-on="click: attempt">
+					<button type="submit" class="btn btn-primary">
 						<i class="fa fa-btn fa-sign-in"></i> Register
 					</button>
 				</div>
@@ -66,27 +66,35 @@ module.exports = {
 	},
 
 	methods: {
-		attempt: function (e) {
+		registerUser: function (e) {
 			e.preventDefault();
-			this.$http.post('register', this.user, function (data) {
-				this.$dispatch('userHasFetchedToken', data.token);
-				this.getUserData();
-			}).error(function (data, status, request) {
-				this.messages = [];
-				if (status == 422) {
-					this.messages = [];
-					for (var key in data) {
-						this.messages.push({type: 'danger', message: data[key]})	
+			var that = this;
+
+			client( { path: '/register', entity: this.user } ).then(
+				function (response) {
+					that.getUserData();
+				},
+				function (response, status) {
+					that.messages = [];
+					if (status == 422) {
+						that.messages = [];
+						for (var key in response.entity) {
+							that.messages.push({type: 'danger', message: response.entity[key]})	
+						}
 					}
 				}
-			})
+			);
+
 		},
 
 		getUserData: function () {
-			this.$http.get('users/me', function (data) {
-				this.$dispatch('userHasLoggedIn', data.user)
-				this.$route.router.go('/auth/profile');
-			})
+			var that = this;
+			client( { path: '/users/me' } ).then(
+				function (response) {
+					that.$dispatch('userHasLoggedIn', response.entity.user)
+					that.$route.router.go('/auth/profile')
+				}
+			);
 		}
 	}, 
 

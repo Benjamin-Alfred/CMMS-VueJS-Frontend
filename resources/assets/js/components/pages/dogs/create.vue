@@ -8,11 +8,11 @@
 				{{ message.message }}
 			</div>
 		</div>
-	    <form class="form-horizontal" role="form">
+	    <form class="form-horizontal" role="form" v-on="submit: createDog">
 	    	<div class="form-group">
 			    <label for="name" class="col-sm-2 col-sm-offset-1 control-label">Name your dog</label>
 			    <div class="col-sm-5">
-			        <input class="form-control" required="required" name="name" type="text" v-model="dog.name">
+			        <input class="form-control" required="required" name="name" type="text" v-model="dog.name" id="nameInput">
 			    </div>
 			</div>
 			<div class="form-group">
@@ -23,7 +23,7 @@
 			</div>
 			<div class="form-group">
 			    <div class="col-sm-4 col-sm-offset-3">
-			        <button class="btn btn-primary" v-on="click: createDog"><i class="fa fa-btn fa-save"></i>Make the dog!</button>
+			        <button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-save"></i>Make the dog!</button>
 			    </div>
 			</div>
 	    </form>
@@ -35,25 +35,31 @@ module.exports = {
 	data: function () {
 		return {
 			dog: {
-				name: null,
-				age: null,
+				name: '',
+				age: '',
 			},
-			messages: []
+			messages: [],
 		}
 	},
 
 	methods: {
 		createDog: function (e) {
-			e.preventDefault();
-			this.$http.post('dogs', this.dog, function (data) {
-				this.messages = [];
-				this.messages.push({type: 'success', message: 'Woof woof! Your dog was created'});
-			}).error( function (data, status, request) {
-				this.messages = [];
-				for (var key in data) {
-					this.messages.push({type: 'danger', message: data[key]})	
+			e.preventDefault()
+			var that = this
+			client({path: 'dogs', entity: this.dog}).then(
+				function (response, status) {
+					that.$set('dog.name', '')
+					that.$set('dog.age', '')
+					that.$set('messages', [{type: 'success', message: 'Woof woof! Your dog was created'}]);
+					document.getElementById('nameInput').focus()
+				},
+				function (response, status) {
+					that.messages = [];
+					for (var key in data) {
+						that.messages.push({type: 'danger', message: data[key]})	
+					}
 				}
-			})
+			);
 		}
 	}
 }

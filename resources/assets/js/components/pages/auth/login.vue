@@ -54,20 +54,30 @@ module.exports = {
 	methods: {
 		attempt: function (e) {
 			e.preventDefault();
-			this.$http.post('login', this.user, function (data) {
-				this.$dispatch('userHasFetchedToken', data.token);
-				this.getUserData();
-			}).error(function (data, status, request) {
-				this.messages = [];
-				if (status == 401) this.messages.push({type: 'danger', message: 'Sorry, you provided invalid credentials'})
-			})
+			var that = this
+			client( { path: 'login', entity: this.user } ).then(
+				function (response, status) {
+					that.$dispatch('userHasFetchedToken', response.token)
+					that.getUserData()
+				},
+				function (response, status) {
+					that.messages = [];
+					if (status == 401) this.messages.push({type: 'danger', message: 'Sorry, you provided invalid credentials'})
+				}
+			);
 		},
 
 		getUserData: function () {
-			this.$http.get('users/me', function (data) {
-				this.$dispatch('userHasLoggedIn', data.user)
-				this.$route.router.go('/auth/profile');
-			})
+			var that = this
+			client( { path: '/users/me' } ).then(
+				function (response) {
+					that.$dispatch('userHasLoggedIn', response.entity.user)
+					that.$route.router.go('/auth/profile');
+				},
+				function (response) {
+					console.log(response);
+				}
+			);
 		}
 	}, 
 

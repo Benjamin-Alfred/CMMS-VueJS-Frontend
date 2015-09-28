@@ -66,7 +66,7 @@ module.exports = {
 
 		router.beforeEach(function (transition) {
 
-			var token = localStorage.getItem('token');
+			var token = localStorage.getItem('jwt-token');
 			if (transition.to.auth) {
 				if( ! token || token === null  ) {
 					transition.redirect('/auth/login')

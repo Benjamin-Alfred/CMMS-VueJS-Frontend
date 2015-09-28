@@ -51,25 +51,32 @@ module.exports = {
 	methods: {
 		// Let's fetch some dogs
 		fetch: function (successHandler) {
-			this.$http.get('dogs', function (data) {
-				// Look ma! Puppies!
-				this.$add('dogs', data.data);
-				successHandler(data);
-			}).error(function (data, status, request) {
-				// Go tell your parents that you've messed up somehow
-				if ( _.contains([401, 500], status) ) {
-					this.$dispatch('userHasLoggedOut');
+			var that = this;
+			client( { path: '/dogs' } ).then(
+				function (response) {
+					// Look ma! Puppies!
+					that.$add('dogs', response.entity.data)
+					successHandler(response.entity.data)
+				},
+				function (response, status) {
+					if ( _.contains([401, 500], status) ) {
+						that.$dispatch('userHasLoggedOut')
+					}
 				}
-			})
+			);
 		}, 
 
 		deleteDog: function (index) {
-			this.$http.delete('dogs/'+this.dogs[index].id, function (data) {
-				this.dogs.splice(index,1);
-				this.messages.push({type: 'success', message: 'Great, dog purged.'})
-			}).error(function (data, status, request) {
-				this.messages.push({type: 'danger', message: 'There was a problem removing the dog'})
-			})
+			var that = this;
+			client( { path: '/dogs/'+this.dogs[index].id, method: 'DELETE' } ).then(
+				function (response) {
+					that.dogs.splice(index,1)
+					that.messages = [{type: 'success', message: 'Great, dog purged.'}]
+				},
+				function (response) {
+					that.messages.push({type: 'danger', message: 'There was a problem removing the dog'})
+				}
+			);
 		}
 
 	}, 
@@ -78,7 +85,7 @@ module.exports = {
 		// Ooh, ooh, are there any new puppies yet?
 		data: function(transition) {
 			this.fetch(function(data) {
-				transition.next({dogs: data.data})
+				transition.next({dogs: data})
 			});
 		}
 	}
