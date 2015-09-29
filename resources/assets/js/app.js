@@ -57,7 +57,7 @@ module.exports = {
   },
 
   components: {
-    navComponent: require('./compiled/nav.vue'),
-    footerComponent: require('./compiled/footer.vue')
+    navComponent: require('./nav.vue'),
+    footerComponent: require('./footer.vue')
   }
 }

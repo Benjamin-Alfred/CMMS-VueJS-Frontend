@@ -14,7 +14,9 @@ elixir.config.js.browserify.options.debug = true
 
 elixir(function (mix) {
   mix.sass('app.scss')
-     .vuemaker('resources/assets/js/components/**/*.+(js|css|html)', 'resources/assets/js/compiled')
-     .vuemaker('resources/assets/js/app.+(js|css|html)', 'resources/assets/js/compiled/')
+     .vuemaker([
+       'resources/assets/js/components/**/*.+(js|css|html)',
+       'resources/assets/js/app.+(js|css|html)'
+     ], 'resources/assets/js/compiled')
      .browserify('bootstrap.js', 'public/js/app.js')
 })
