@@ -3,6 +3,8 @@ This package serves as a starter for you to build a single page Vue.js website. 
 
 A companion Laravel starter API is available [here](https://github.com/layer7be/vue-starter-laravel-api). The purpose is to have a Laravel API using Dingo and JWT Authentication. The API just serves the purpose of getting it working, so you can then adapt and plug in your own API (or simply adjust it to your needs, of course)
 
+Online demo: http://vue.layer7.be/ (login as admin@example.com / admin)
+
 [Companion Laravel API](https://github.com/layer7be/vue-starter-laravel-api)
 
 Note: I made an experimental branch on Vue.js 1.0.0.rc [here](https://github.com/layer7be/vue-starter/tree/1.0.0). This will become master as soon
