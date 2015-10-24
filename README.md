@@ -5,6 +5,9 @@ A companion Laravel starter API is available [here](https://github.com/layer7be/
 
 [Companion Laravel API](https://github.com/layer7be/vue-starter-laravel-api)
 
+Note: I made an experimental branch on Vue.js 1.0.0.rc [here](https://github.com/layer7be/vue-starter/tree/1.0.0). This will become master as soon
+as 1.0.0 becomes stable.
+
 ## Usage
 
 ### Step 1: Install the dependencies
