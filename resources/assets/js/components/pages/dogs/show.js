@@ -14,9 +14,10 @@ module.exports = {
   methods: {
     // Let's fetch the dog
     fetch: function (id, successHandler) {
+      var that = this
       client({ path: '/dogs/' + id }).then(
         function (response) {
-          this.$add('dog', response.entity.data)
+          that.$set('dog', response.entity.data)
           successHandler(response.entity.data)
         },
         function (response, status, request) {

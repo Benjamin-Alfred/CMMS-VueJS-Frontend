@@ -14,7 +14,7 @@ module.exports = {
       client({ path: '/dogs' }).then(
         function (response) {
           // Look ma! Puppies!
-          that.$add('dogs', response.entity.data)
+          that.$set('dogs', response.entity.data)
           successHandler(response.entity.data)
         },
         function (response, status) {

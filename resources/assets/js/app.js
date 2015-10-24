@@ -54,10 +54,6 @@ module.exports = {
       localStorage.removeItem('jwt-token')
       if (this.$route.auth) this.$route.router.go('/auth/login')
     }
-  },
-
-  components: {
-    navComponent: require('./nav.vue'),
-    footerComponent: require('./footer.vue')
   }
+
 }
