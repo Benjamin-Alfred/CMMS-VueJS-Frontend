@@ -5,7 +5,7 @@
 	Loading data {{ loadingRouteData }}
 </div>
 <div class="panel-body" v-if="messages.length > 0">
-	<div v-repeat="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+	<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
 		{{ message.message }}
 	</div>
 </div>
@@ -24,13 +24,13 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr v-repeat="dog in dogs">
+		<tr v-for="dog in dogs">
 			<td>{{ dog.id }}</td>
 			<td>{{ dog.name }}</td>
 			<td>{{ dog.age }}</td>
 			<td>
 				<a class="btn btn-primary btn-xs" v-link="{ path: '/dogs/'+dog.id }">Edit</a>
-				<a class="btn btn-primary btn-xs" v-on="click: deleteDog($index)">Delete</a>
+				<a class="btn btn-primary btn-xs" v-on:click="deleteDog($index)">Delete</a>
 			</td>
 		</tr>
 	</tbody>

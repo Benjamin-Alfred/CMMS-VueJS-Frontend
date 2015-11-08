@@ -5,7 +5,7 @@
     <form class="form-horizontal" role="form">
 
 		<div id="alerts" v-if="messages.length > 0">
-			<div v-repeat="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+			<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
 				{{ message.message }}
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 
 		<div class="form-group">
 			<div class="col-md-6 col-md-offset-4">
-				<button type="submit" class="btn btn-primary" v-on="click: attempt">
+				<button type="submit" class="btn btn-primary" v-on:click="attempt">
 					<i class="fa fa-btn fa-sign-in"></i>Login
 				</button>
 

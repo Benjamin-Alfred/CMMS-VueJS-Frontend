@@ -2,10 +2,10 @@
 	Register for an account
 </div>
 <div class="panel-body">
-	<form class="form-horizontal" role="form" v-on="submit: registerUser">
+	<form class="form-horizontal" role="form" v-on:submit="registerUser">
 
 		<div id="alerts" v-if="messages.length > 0">
-			<div v-repeat="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+			<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
 				{{ message.message }}
 			</div>
 		</div>
