@@ -14,15 +14,16 @@ module.exports = {
   methods: {
     // Let's fetch the dog
     fetch: function (id, successHandler) {
+      var self = this
       client({ path: '/dogs/' + id }).then(
         function (response) {
-          this.$add('dog', response.entity.data)
+          self.$add('dog', response.entity.data)
           successHandler(response.entity.data)
         },
         function (response, status, request) {
           // Go tell your parents that you've messed up somehow
           if (status === 401) {
-            this.$dispatch('userHasLoggedOut')
+            self.$dispatch('userHasLoggedOut')
           } else {
             console.log(response)
           }
@@ -32,16 +33,16 @@ module.exports = {
 
     updateDog: function (e) {
       e.preventDefault()
-      var that = this
+      var self = this
       client({ path: '/dogs/' + this.dog.id, entity: this.dog, method: 'PUT'}).then(
         function (response) {
-          that.messages = []
-          that.messages.push({type: 'success', message: 'Woof woof! Your dog was updated'})
+          self.messages = []
+          self.messages.push({type: 'success', message: 'Woof woof! Your dog was updated'})
         },
         function (response) {
-          that.messages = []
+          self.messages = []
           for (var key in response.entity) {
-            that.messages.push({type: 'danger', message: response.entity[key]})
+            self.messages.push({type: 'danger', message: response.entity[key]})
           }
         }
       )
