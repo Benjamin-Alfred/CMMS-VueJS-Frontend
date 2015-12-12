@@ -8,7 +8,8 @@ module.exports = {
         password: null,
         password_confirmation: null
       },
-      messages: []
+      messages: [],
+      registering: false
     }
   },
 
@@ -16,7 +17,7 @@ module.exports = {
     registerUser: function (e) {
       e.preventDefault()
       var that = this
-
+      that.registering = true
       client({ path: '/register', entity: this.user }).then(
         function (response) {
           that.getUserData()
@@ -27,6 +28,7 @@ module.exports = {
             that.messages = []
             for (var key in response.entity) {
               that.messages.push({type: 'danger', message: response.entity[key]})
+              that.registering = false
             }
           }
         }

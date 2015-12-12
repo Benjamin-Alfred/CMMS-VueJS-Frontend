@@ -5,7 +5,8 @@ module.exports = {
         name: '',
         age: ''
       },
-      messages: []
+      messages: [],
+      creating: false
     }
   },
 
@@ -13,6 +14,7 @@ module.exports = {
     createDog: function (e) {
       e.preventDefault()
       var that = this
+      that.creating = true
       client({path: 'dogs', entity: this.dog}).then(
         function (response, status) {
           that.dog.name = ''
@@ -21,11 +23,13 @@ module.exports = {
           Vue.nextTick(function () {
             document.getElementById('nameInput').focus()
           })
+          that.creating = false
         },
         function (response, status) {
           that.messages = []
           for (var key in response.entity) {
             that.messages.push({type: 'danger', message: response.entity[key]})
+            that.creating = false
           }
         }
       )
