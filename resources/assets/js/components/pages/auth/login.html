@@ -2,7 +2,7 @@
     Sign in to your account
 </div>
 <div class="panel-body">
-    <form class="form-horizontal" role="form">
+    <form class="form-horizontal" role="form" v-on:submit="attempt">
 
 		<div id="alerts" v-if="messages.length > 0">
 			<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
@@ -26,7 +26,7 @@
 
 		<div class="form-group">
 			<div class="col-md-6 col-md-offset-4">
-				<button type="submit" class="btn btn-primary" v-on:click="attempt">
+				<button type="submit" class="btn btn-primary">
 					<i class="fa fa-btn fa-sign-in"></i>Login
 				</button>
 
