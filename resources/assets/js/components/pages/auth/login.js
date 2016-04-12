@@ -6,7 +6,8 @@ module.exports = {
         email: null,
         password: null
       },
-      messages: []
+      messages: [],
+      loggingIn: false
     }
   },
 
@@ -14,6 +15,7 @@ module.exports = {
     attempt: function (e) {
       e.preventDefault()
       var that = this
+      that.loggingIn = true
       client({ path: 'login', entity: this.user }).then(
         function (response) {
           that.$dispatch('userHasFetchedToken', response.token)
@@ -22,6 +24,7 @@ module.exports = {
         function (response) {
           that.messages = []
           if (response.status && response.status.code === 401) that.messages.push({type: 'danger', message: 'Sorry, you provided invalid credentials'})
+          that.loggingIn = false
         }
       )
     },
