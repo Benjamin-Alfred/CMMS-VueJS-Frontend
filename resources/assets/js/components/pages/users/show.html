@@ -1,0 +1,61 @@
+<div class="panel-heading">
+	Edit user
+</div>
+<div class="panel-body">
+	<div id="alerts" v-if="messages.length > 0">
+		<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+			{{ message.message }}
+		</div>
+	</div>
+	<form class="form-horizontal" role="form" v-on:submit="updateUser">
+	<fieldset disabled>
+		<div class="form-group">
+			<label for="user_id" class="col-sm-2 col-sm-offset-1 control-label">User ID</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="user_id" type="text" v-model="user.id">
+			</div>
+		</div>
+	</fieldset>
+		<div class="form-group">
+			<label for="first_name" class="col-sm-2 col-sm-offset-1 control-label">First Name</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="first_name" type="text" v-model="user.first_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="middle_name" class="col-sm-2 col-sm-offset-1 control-label">Middle Name</label>
+			<div class="col-sm-5">
+				<input class="form-control" name="middle_name" type="text" v-model="user.middle_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="last_name" class="col-sm-2 col-sm-offset-1 control-label">Last Name</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="last_name" type="text" v-model="user.last_name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email_address" class="col-sm-2 col-sm-offset-1 control-label">Email Address</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="email_address" type="email" v-model="user.email_address">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="mobile_phone" class="col-sm-2 col-sm-offset-1 control-label">Mobile Phone</label>
+			<div class="col-sm-5">
+				<input class="form-control" name="mobile_phone" type="email" v-model="user.mobile_phone">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="organizational_affiliation" class="col-sm-2 col-sm-offset-1 control-label">Organization</label>
+			<div class="col-sm-5">
+				<input class="form-control" name="organizational_affiliation" type="email" v-model="user.organizational_affiliation">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-save"></i>Update the user!</button>
+			</div>
+		</div>
+	</form>
+</div>

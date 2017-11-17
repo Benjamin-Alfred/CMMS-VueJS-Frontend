@@ -3,8 +3,12 @@ module.exports = {
   data: function () {
     return {
       user: {
-        name: null,
-        email: null,
+        first_name: null,
+        middle_name: null,
+        last_name: null,
+        email_address: null,
+        mobile_phone: null,
+        organizational_affiliation: null,
         password: null,
         password_confirmation: null
       },

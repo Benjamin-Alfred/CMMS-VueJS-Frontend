@@ -53,6 +53,21 @@ module.exports = {
           }
         }
       },
+      '/users': {
+        component: require('./compiled/pages/users.vue'),
+        auth: true,
+        subRoutes: {
+          '/': {
+            component: require('./compiled/pages/users/index.vue')
+          },
+          '/:id': {
+            component: require('./compiled/pages/users/show.vue')
+          },
+          '/create': {
+            component: require('./compiled/pages/users/create.vue')
+          }
+        }
+      },
       '/terms': {
         component: require('./compiled/pages/terms.vue')
       },

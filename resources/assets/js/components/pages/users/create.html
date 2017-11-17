@@ -1,0 +1,55 @@
+<div class="panel-heading">
+	Create a new user
+</div>
+<div class="panel-body">
+	<div id="alerts" v-if="messages.length > 0">
+		<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+			{{ message.message }}
+		</div>
+	</div>
+	<form class="form-horizontal" role="form" v-on:submit="createUser">
+		<div class="form-group">
+			<label for="first_name" class="col-sm-2 col-sm-offset-1 control-label">First Name</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="first_name" type="text" v-model="user.first_name" id="firstNameInput">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="middle_name" class="col-sm-2 col-sm-offset-1 control-label">Middle Name</label>
+			<div class="col-sm-5">
+				<input class="form-control" name="middle_name" type="text" v-model="user.middle_name" id="middleNameInput">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="last_name" class="col-sm-2 col-sm-offset-1 control-label">Last Name</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="last_name" type="text" v-model="user.last_name" id="lastNameInput">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email_address" class="col-sm-2 col-sm-offset-1 control-label">E-Mail Address</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="email_address" type="email" v-model="user.email_address" id="emailAddressInput">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="mobile_phone" class="col-sm-2 col-sm-offset-1 control-label">Mobile Phone</label>
+			<div class="col-sm-5">
+				<input class="form-control" name="mobile_phone" type="text" v-model="user.mobile_phone" id="mobilePhoneInput">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="organizational_affiliation" class="col-sm-2 col-sm-offset-1 control-label">Organization</label>
+			<div class="col-sm-5">
+				<input class="form-control" name="organizational_affiliation" type="text" v-model="user.organizational_affiliation" id="organizationalAffiliationInput">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-primary" :disabled="creating">
+					<i class="fa fa-btn fa-save"></i>Save!
+				</button>
+			</div>
+		</div>
+	</form>
+</div>

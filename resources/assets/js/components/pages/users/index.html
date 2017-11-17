@@ -1,0 +1,41 @@
+<div class="panel-heading">
+	List of users
+</div>
+<div class="panel-body" v-if="$loadingRouteData">
+	Loading data {{ loadingRouteData }}
+</div>
+<div class="panel-body" v-if="messages.length > 0">
+	<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+		{{ message.message }}
+	</div>
+</div>
+
+<div class="panel-body" v-if="users.length == 0">
+	You have no users!
+</div>
+
+<table class="table" v-if=" ! $loadingRouteData && users.length > 0">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email Address</th>
+			<th>Mobile Phone</th>
+			<th>Organization</th>
+			<th width="120px">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr v-for="user in users">
+			<td>{{ user.id }}</td>
+			<td>{{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}</td>
+			<td>{{ user.email_address }}</td>
+			<td>{{ user.mobile_phone }}</td>
+			<td>{{ user.organizational_affiliation }}</td>
+			<td>
+				<a class="btn btn-primary btn-xs" v-link="{ path: '/users/'+user.id }">Edit</a>
+				<a class="btn btn-primary btn-xs" v-on:click="deleteDog($index)">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

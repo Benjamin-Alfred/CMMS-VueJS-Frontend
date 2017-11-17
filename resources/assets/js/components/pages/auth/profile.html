@@ -3,16 +3,20 @@
 </div>
 <div class="panel-body">
 	<!-- <button class="btn btn-primary" v-on="click: fetch">Fetch</button> -->
-	<table class="table table-bordered" v-if="$root.user">
+	<table class="table table-responsive table-bordered" v-if="$root.user">
 		<tr>
 			<th>User ID</th>
 			<th>Name</th>
 			<th>Email</th>
+			<th>Organization</th>
+			<th>Phone Number</th>
 		</tr>
 		<tr>
-			<td>{{ $root.user.id }}</td>
-			<td>{{ $root.user.name }}</td>
-			<td>{{ $root.user.email }}</td>
+			<td>{{ $root.user.id }} </td>
+			<td>{{ $root.user.first_name }} {{ $root.user.middle_name }} {{ $root.user.last_name }}</td>
+			<td>{{ $root.user.email_address }}</td>
+			<td>{{ $root.user.organizational_affiliation }}</td>
+			<td>{{ $root.user.mobile_phone }}</td>
 		</tr>
 	</table>
 </div>

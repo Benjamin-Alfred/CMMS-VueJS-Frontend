@@ -3,7 +3,7 @@ module.exports = {
   data: function () {
     return {
       user: {
-        email: null,
+        email_address: null,
         password: null
       },
       messages: [],
