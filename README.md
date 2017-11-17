@@ -1,14 +1,5 @@
-# Vue.js Starter Website
-This package serves as a starter for you to build a single page Vue.js website. It uses vue-router and browserify to keep everyting nicely separated, and makes use of Laravel Elixir to avoid a huge Gulpfile (Laravel Elixir has nothing to do with the Laravel Framework, this package has no relation to that whatsoever).
-
-A companion Laravel starter API is available [here](https://github.com/layer7be/vue-starter-laravel-api). The purpose is to have a Laravel API using Dingo and JWT Authentication. The API just serves the purpose of getting it working, so you can then adapt and plug in your own API (or simply adjust it to your needs, of course)
-
-Online demo: http://vue.layer7.be/ (login as admin@example.com / admin)
-
-[Companion Laravel API](https://github.com/layer7be/vue-starter-laravel-api)
-
-Note: I made an experimental branch on Vue.js 1.0.0.rc [here](https://github.com/layer7be/vue-starter/tree/1.0.0). This will become master as soon
-as 1.0.0 becomes stable.
+# CMMS Vue.js Frontend
+This is a Vue.js Frontend for the [CMMS Core API](https://github.com/APHLK/CMMS-Core-API) based on [Koen Calliauw's Vue.js starter for a single page website](https://github.com/layer7be/vue-starter-laravel-api). It uses vue-router and browserify to keep everyting nicely separated, and makes use of Laravel Elixir to avoid a huge Gulpfile.
 
 ## Usage
 
@@ -56,14 +47,10 @@ browser-sync start --server --files "js/*.js, css/*.css"
 browser-sync will then output the URL's on which you can access the site.
 
 ### Step 5: Login
-If you followed the instructions in the companion repo and chose to use db:seed, you can now login using the following credentials:
-```
-username: admin@example.com
-password: admin
-```
+If you followed the instructions in the companion repo and chose to use db:seed, check users' seed file for default login credentials
 
 ## License
 MIT License. See LICENSE file.
 
 ## Credits
-Thanks Taylor Otwell for your Laravel Spark styling. I used some of it.
+Thanks to Koen Calliauw and Taylor Otwell.
