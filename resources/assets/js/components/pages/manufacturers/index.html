@@ -1,0 +1,37 @@
+<div class="panel-heading">
+	List of manufacturers
+</div>
+<div class="panel-body" v-if="$loadingRouteData">
+	Loading data {{ loadingRouteData }}
+</div>
+<div class="panel-body" v-if="messages.length > 0">
+	<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+		{{ message.message }}
+	</div>
+</div>
+
+<div class="panel-body" v-if="manufacturers.length == 0">
+	You have no manufacturers!
+</div>
+
+<table class="table" v-if=" ! $loadingRouteData && manufacturers.length > 0">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Address</th>
+			<th width="120px">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr v-for="manufacturer in manufacturers">
+			<td>{{ manufacturer.id }}</td>
+			<td>{{ manufacturer.name }}</td>
+			<td>{{ manufacturer.address }}</td>
+			<td>
+				<a class="btn btn-primary btn-xs" v-link="{ path: '/manufacturers/'+manufacturer.id }">Edit</a>
+				<a class="btn btn-primary btn-xs" v-on:click="deleteManufacturer($index)">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

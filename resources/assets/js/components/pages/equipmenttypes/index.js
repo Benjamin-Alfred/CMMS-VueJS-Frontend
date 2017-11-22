@@ -2,19 +2,18 @@ module.exports = {
 
   data: function () {
     return {
-      dogs: [],
+      equipmentTypes: [],
       messages: []
     }
   },
 
   methods: {
-    // Let's fetch some dogs
+    // Let's fetch some equipmentTypes
     fetch: function (successHandler) {
       var that = this
-      client({ path: '/dogs' }).then(
+      client({ path: '/equipmenttypes' }).then(
         function (response) {
-          // Look ma! Puppies!
-          that.$set('dogs', response.entity.data)
+          that.$set('equipmentTypes', response.entity.data)
           successHandler(response.entity.data)
         },
         function (response, status) {
@@ -25,15 +24,15 @@ module.exports = {
       )
     },
 
-    deleteDog: function (index) {
+    deleteEquipmentType: function (index) {
       var that = this
-      client({ path: '/dogs/' + this.dogs[index].id, method: 'DELETE' }).then(
+      client({ path: '/equipmenttypes/' + this.equipmentTypes[index].id, method: 'DELETE' }).then(
         function (response) {
-          that.dogs.splice(index, 1)
-          that.messages = [{type: 'success', message: 'Great, dog purged.'}]
+          that.equipmentTypes.splice(index, 1)
+          that.messages = [{type: 'success', message: 'Equipment type deleted.'}]
         },
         function (response) {
-          that.messages.push({type: 'danger', message: 'There was a problem removing the dog'})
+          that.messages.push({type: 'danger', message: 'There was a problem removing the equipment type'})
         }
       )
     }
@@ -41,10 +40,9 @@ module.exports = {
   },
 
   route: {
-    // Ooh, ooh, are there any new puppies yet?
     data: function (transition) {
       this.fetch(function (data) {
-        transition.next({dogs: data})
+        transition.next({equipmentTypes: data})
       })
     }
   }

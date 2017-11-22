@@ -1,5 +1,5 @@
 <div class="panel-heading">
-	Make a dog!
+	Manufacturer!
 </div>
 <div class="panel-body">
 	<div id="alerts" v-if="messages.length > 0">
@@ -7,23 +7,23 @@
 			{{ message.message }}
 		</div>
 	</div>
-	<form class="form-horizontal" role="form" v-on:submit="createDog">
+	<form class="form-horizontal" role="form" v-on:submit="createManufacturer">
 		<div class="form-group">
-			<label for="name" class="col-sm-2 col-sm-offset-1 control-label">Name your dog</label>
+			<label for="name" class="col-sm-2 col-sm-offset-1 control-label">Name</label>
 			<div class="col-sm-5">
-				<input class="form-control" required="required" name="name" type="text" v-model="dog.name" id="nameInput">
+				<input class="form-control" required="required" name="name" type="text" v-model="manufacturer.name" id="nameInput">
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="age" class="col-sm-2 col-sm-offset-1 control-label">What's the age?</label>
+			<label for="address" class="col-sm-2 col-sm-offset-1 control-label">Address</label>
 			<div class="col-sm-5">
-				<input class="form-control" required="required" name="age" type="text" v-model="dog.age">
+				<input class="form-control" required="required" name="address" type="text" v-model="manufacturer.address">
 			</div>
 		</div>
 		<div class="form-group">
 			<div class="col-sm-4 col-sm-offset-3">
 				<button type="submit" class="btn btn-primary" :disabled="creating">
-					<i class="fa fa-btn fa-save"></i>Make the dog!
+					<i class="fa fa-btn fa-save"></i>Add a Manufacturer!
 				</button>
 			</div>
 		</div>

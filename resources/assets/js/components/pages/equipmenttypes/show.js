@@ -2,26 +2,25 @@ module.exports = {
 
   data: function () {
     return {
-      dog: {
+      equipmentType: {
         id: null,
         name: null,
-        age: null
+        description: null
       },
       messages: []
     }
   },
 
   methods: {
-    // Let's fetch the dog
+    // Let's fetch the equipmentType
     fetch: function (id, successHandler) {
       var that = this
-      client({ path: '/dogs/' + id }).then(
+      client({ path: '/equipmenttypes/' + id }).then(
         function (response) {
-          that.$set('dog', response.entity.data)
+          that.$set('equipmentType', response.entity.data)
           successHandler(response.entity.data)
         },
         function (response, status, request) {
-          // Go tell your parents that you've messed up somehow
           if (status === 401) {
             self.$dispatch('userHasLoggedOut')
           } else {
@@ -31,13 +30,13 @@ module.exports = {
       )
     },
 
-    updateDog: function (e) {
+    updateEquipmentType: function (e) {
       e.preventDefault()
       var self = this
-      client({ path: '/dogs/' + this.dog.id, entity: this.dog, method: 'PUT'}).then(
+      client({ path: '/equipmenttypes/' + this.equipmentType.id, entity: this.equipmentType, method: 'PUT'}).then(
         function (response) {
           self.messages = []
-          self.messages.push({type: 'success', message: 'Woof woof! Your dog was updated'})
+          self.messages.push({type: 'success', message: 'The equipment type was updated'})
         },
         function (response) {
           self.messages = []
@@ -51,10 +50,9 @@ module.exports = {
   },
 
   route: {
-    // Ooh, ooh, are there any new puppies yet?
     data: function (transition) {
       this.fetch(this.$route.params.id, function (data) {
-        transition.next({dog: data})
+        transition.next({equipmentType: data})
       })
     }
   }

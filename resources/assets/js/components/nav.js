@@ -1,7 +1,7 @@
 module.exports = {
   data: function () {
     return {
-      navTitle: 'CMMS'
+      navTitle: 'Biosafety Cabinets Data'
     }
   }
 }

@@ -1,0 +1,37 @@
+<div class="panel-heading">
+	Edit Equipment Type
+</div>
+<div class="panel-body">
+	<div id="alerts" v-if="messages.length > 0">
+		<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+			{{ message.message }}
+		</div>
+	</div>
+	<form class="form-horizontal" role="form" v-on:submit="updateEquipmentType">
+	<fieldset disabled>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 col-sm-offset-1 control-label">Equipment Type ID</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="name" type="text" v-model="equipmentType.id">
+			</div>
+		</div>
+	</fieldset>
+		<div class="form-group">
+			<label for="name" class="col-sm-2 col-sm-offset-1 control-label">Name</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="name" type="text" v-model="equipmentType.name">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="description" class="col-sm-2 col-sm-offset-1 control-label">Description</label>
+			<div class="col-sm-5">
+				<input class="form-control" required="required" name="description" type="text" v-model="equipmentType.description">
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-4 col-sm-offset-3">
+				<button type="submit" class="btn btn-primary"><i class="fa fa-btn fa-save"></i>Update</button>
+			</div>
+		</div>
+	</form>
+</div>

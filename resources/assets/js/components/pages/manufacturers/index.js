@@ -2,18 +2,18 @@ module.exports = {
 
   data: function () {
     return {
-      users: [],
+      manufacturers: [],
       messages: []
     }
   },
 
   methods: {
-    // Let's fetch some users
+    // Let's fetch some manufacturers
     fetch: function (successHandler) {
       var that = this
-      client({ path: '/users' }).then(
+      client({ path: '/manufacturers' }).then(
         function (response) {
-          that.$set('users', response.entity.data)
+          that.$set('manufacturers', response.entity.data)
           successHandler(response.entity.data)
         },
         function (response, status) {
@@ -24,15 +24,15 @@ module.exports = {
       )
     },
 
-    deleteUser: function (index) {
+    deleteManufacturer: function (index) {
       var that = this
-      client({ path: '/users/' + this.users[index].id, method: 'DELETE' }).then(
+      client({ path: '/manufacturers/' + this.manufacturers[index].id, method: 'DELETE' }).then(
         function (response) {
-          that.users.splice(index, 1)
-          that.messages = [{type: 'success', message: 'Great, the user has been deleted.'}]
+          that.manufacturers.splice(index, 1)
+          that.messages = [{type: 'success', message: 'Manufacturer deleted.'}]
         },
         function (response) {
-          that.messages.push({type: 'danger', message: 'There was a problem removing the user'})
+          that.messages.push({type: 'danger', message: 'There was a problem removing the manufacturer'})
         }
       )
     }
@@ -42,7 +42,7 @@ module.exports = {
   route: {
     data: function (transition) {
       this.fetch(function (data) {
-        transition.next({users: data})
+        transition.next({manufacturers: data})
       })
     }
   }

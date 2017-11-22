@@ -1,9 +1,9 @@
 module.exports = {
   data: function () {
     return {
-      dog: {
+      equipmentType: {
         name: '',
-        age: ''
+        description: ''
       },
       messages: [],
       creating: false
@@ -11,15 +11,15 @@ module.exports = {
   },
 
   methods: {
-    createDog: function (e) {
+    createEquipmentType: function (e) {
       e.preventDefault()
       var that = this
       that.creating = true
-      client({path: 'dogs', entity: this.dog}).then(
+      client({path: 'equipmenttypes', entity: this.equipmentType}).then(
         function (response, status) {
-          that.dog.name = ''
-          that.dog.age = ''
-          that.messages = [ {type: 'success', message: 'Woof woof! Your dog was created'} ]
+          that.equipmentType.name = ''
+          that.equipmentType.description = ''
+          that.messages = [ {type: 'success', message: 'A new equipment type was added'} ]
           Vue.nextTick(function () {
             document.getElementById('nameInput').focus()
           })

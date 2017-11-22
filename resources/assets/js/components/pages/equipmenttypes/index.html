@@ -1,0 +1,37 @@
+<div class="panel-heading">
+	List of equipment types
+</div>
+<div class="panel-body" v-if="$loadingRouteData">
+	Loading data {{ loadingRouteData }}
+</div>
+<div class="panel-body" v-if="messages.length > 0">
+	<div v-for="message in messages" class="alert alert-{{ message.type }} alert-dismissible" role="alert">
+		{{ message.message }}
+	</div>
+</div>
+
+<div class="panel-body" v-if="equipmentTypes.length == 0">
+	You have no equipment types!
+</div>
+
+<table class="table" v-if=" ! $loadingRouteData && equipmentTypes.length > 0">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Description</th>
+			<th width="120px">Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr v-for="equipmentType in equipmentTypes">
+			<td>{{ equipmentType.id }}</td>
+			<td>{{ equipmentType.name }}</td>
+			<td>{{ equipmentType.description }}</td>
+			<td>
+				<a class="btn btn-primary btn-xs" v-link="{ path: '/equipmenttypes/'+equipmentType.id }">Edit</a>
+				<a class="btn btn-primary btn-xs" v-on:click="deleteEquipmentType($index)">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>

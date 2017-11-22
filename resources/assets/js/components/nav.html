@@ -17,8 +17,16 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li><a v-link="{ path: '/home' }">Home</a></li>
-				<li><a v-link="{ path: '/dogs' }" v-if="$root.authenticated">Dogs</a></li>
-				<li><a v-link="{ path: '/users' }" v-if="$root.authenticated">Users</a></li>
+				<li class="dropdown" v-if="$root.authenticated">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+						Configuration <span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a v-link="{ path: '/users' }">Users</a></li>
+						<li><a v-link="{ path: '/manufacturers' }">Manufacturers</a></li>
+						<li><a v-link="{ path: '/equipmenttypes' }">Equipment Types</a></li>
+					</ul>
+				</li>
 			</ul>
 			<!-- Right Side Of Navbar -->
 			<ul class="nav navbar-nav navbar-right">
@@ -28,7 +36,7 @@
 				<!-- Authenticated Right Dropdown -->
 				<li class="dropdown" v-if="$root.authenticated">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-						{{ $root.user.name }} <span class="caret"></span>
+						{{ $root.user.first_name }} <span class="caret"></span>
 					</a>
 
 					<ul class="dropdown-menu" role="menu">

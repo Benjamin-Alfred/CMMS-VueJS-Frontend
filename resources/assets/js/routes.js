@@ -38,18 +38,33 @@ module.exports = {
           }
         }
       },
-      '/dogs': {
-        component: require('./compiled/pages/dogs.vue'),
+      '/equipmenttypes': {
+        component: require('./compiled/pages/equipmenttypes.vue'),
         auth: true,
         subRoutes: {
           '/': {
-            component: require('./compiled/pages/dogs/index.vue')
+            component: require('./compiled/pages/equipmenttypes/index.vue')
           },
           '/:id': {
-            component: require('./compiled/pages/dogs/show.vue')
+            component: require('./compiled/pages/equipmenttypes/show.vue')
           },
           '/create': {
-            component: require('./compiled/pages/dogs/create.vue')
+            component: require('./compiled/pages/equipmenttypes/create.vue')
+          }
+        }
+      },
+      '/manufacturers': {
+        component: require('./compiled/pages/manufacturers.vue'),
+        auth: true,
+        subRoutes: {
+          '/': {
+            component: require('./compiled/pages/manufacturers/index.vue')
+          },
+          '/:id': {
+            component: require('./compiled/pages/manufacturers/show.vue')
+          },
+          '/create': {
+            component: require('./compiled/pages/manufacturers/create.vue')
           }
         }
       },
